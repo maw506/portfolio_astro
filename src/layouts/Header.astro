@@ -1,0 +1,23 @@
+---
+import ThemeToggle from "../components/ReactComponents/ThemeToggle.tsx";
+import "../styles/components/_header.scss";
+---
+
+<header class="main-header">
+  <div class="container">
+    <nav class="navbar">
+      <ul>
+        <li><a href="#hero">Inicio</a></li>
+        <li><a href="#about">Sobre mí</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#education">Educación</a></li>
+        <li><a href="#projects">Proyectos</a></li>
+        <li><a href="#contact">Contacto</a></li>
+      </ul>
+    </nav>
+
+    <div class="toggles">
+      <ThemeToggle client:load />
+    </div>
+  </div>
+</header>

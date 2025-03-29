@@ -1,0 +1,42 @@
+@use "../utils/variables";
+
+.hero {
+  text-align: center;
+  padding: variables.$spacing-md variables.$spacing-sm;
+
+  @media (max-width: 768px) {
+    .hero {
+      padding: variables.$spacing-lg variables.$spacing-sm;
+    }
+  }
+
+  .avatar {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto variables.$spacing-sm;
+    display: block;
+  }
+
+  @media (min-width: 768px) {
+    .avatar {
+      display: none;
+    }
+    .labels {
+      display: none;
+      margin: 0;
+    }
+  }
+
+  .labels {
+    font-weight: 600;
+    font-size: 1.25rem;
+    margin: variables.$spacing-xs 0;
+
+    .divider {
+      margin: 0 variables.$spacing-xs;
+      color: var(--primary-color);
+    }
+  }
+}

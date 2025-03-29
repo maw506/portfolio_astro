@@ -1,0 +1,112 @@
+@use "../utils/variables";
+
+.about-section {
+  padding: variables.$spacing-lg variables.$spacing-xlg;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+  .about-content {
+    margin-top: 55px;
+    display: flex;
+    flex-direction: column;
+    gap: variables.$spacing-xlg;
+    align-items: center;
+
+    @media (min-width: 768px) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .text {
+      flex: 3;
+      max-width: 1000px;
+      text-align: left;
+
+      h2 {
+        font-size: 3rem;
+        color: var(--primary-color);
+        margin-bottom: variables.$spacing-md;
+      }
+
+      .block {
+        margin-bottom: variables.$spacing-md;
+
+        h3 {
+          font-size: 1.2rem;
+          font-weight: 600;
+          margin-bottom: 0.5rem;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+        }
+
+        p {
+          color: var(--text-color-light);
+        }
+      }
+    }
+
+    .image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+
+      img {
+        width: 350px;
+        max-width: 100%;
+        border-radius: 16px;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        animation: floaty 4s ease-in-out infinite;
+
+        // Opcional: brillo animado detrás
+        &::after {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 120%;
+          height: 120%;
+          background: radial-gradient(
+            circle,
+            rgba(64, 150, 255, 0.2),
+            transparent 70%
+          );
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          z-index: -1;
+          animation: pulse 6s ease-in-out infinite;
+        }
+      }
+    }
+  }
+}
+
+@keyframes floaty {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,77 @@
+@use "../utils/variables";
+
+.main-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--card-bg);
+  padding: variables.$spacing-sm variables.$spacing-md;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05); // sutil sombra
+  backdrop-filter: blur(6px); // si usás transparencias, esto es un golazo
+
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo a {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--primary-color);
+  }
+
+  .navbar ul {
+    list-style: none;
+    display: flex;
+    gap: variables.$spacing-sm;
+
+    li a {
+      text-decoration: none;
+      font-weight: 500;
+      color: var(--text-color);
+
+      &:hover {
+        color: var(--primary-color);
+      }
+    }
+  }
+
+  .toggles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: variables.$spacing-sm;
+
+    button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.25rem;
+      font-size: 1.3rem;
+      transition: transform 0.2s ease;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+
+      svg {
+        stroke: var(--text-color);
+        transition: stroke 0.3s ease;
+      }
+
+      .icon-wrapper {
+        display: inline-block;
+        transition:
+          transform 0.3s ease,
+          opacity 0.3s ease;
+
+        &.animate {
+          transform: rotate(180deg);
+          opacity: 0.4;
+        }
+      }
+    }
+  }
+}
