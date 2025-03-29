@@ -1,0 +1,24 @@
+---
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Skills from "../components/Skills.astro";
+import Education from "../components/Education.astro";
+import ProjectsDev from "../components/ProjectsDev.astro";
+import ProjectsDesing from "../components/ProjectsDesing.astro";
+import Contact from "../components/Contact.astro";
+import MainLayout from "../layouts/MainLayout.astro";
+import "../styles/main.scss";
+---
+
+<MainLayout>
+  <section id="hero"></section>
+  <section class="full-screen">
+    <Hero />
+  </section>
+
+  <section id="about" class="full-screen"><About /></section>
+  <section id="skills"><Skills /></section>
+  <section id="education"><Education /></section>
+  <section id="projects"><ProjectsDev /><ProjectsDesing /></section>
+  <section id="contact"><Contact /></section>
+</MainLayout>

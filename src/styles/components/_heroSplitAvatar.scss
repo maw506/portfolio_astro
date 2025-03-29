@@ -1,0 +1,117 @@
+@use "../utils/variables";
+
+.hero-split {
+  .content {
+    position: relative;
+    height: 95vh;
+    display: flex;
+
+    .sides {
+      display: flex;
+      flex: 1;
+      height: 100%;
+
+      &.is-resetting .side {
+        transition: flex-grow 0.4s ease;
+      }
+
+      .side {
+        flex-grow: 1;
+        flex-shrink: 1;
+        flex-basis: 0;
+        min-width: 0;
+        overflow: hidden;
+        transition: flex-grow 0.2s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        padding: 0;
+
+        .overlay {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          gap: variables.$spacing-sm;
+          z-index: 3;
+          width: 100%;
+          max-width: 480px;
+          margin: 0 auto;
+          padding: variables.$spacing-lg;
+          opacity: 1;
+          transform: translateY(0);
+          transition:
+            opacity 0.2s ease,
+            transform 0.2s ease;
+        }
+
+        &[data-hidden="true"] .overlay {
+          opacity: 0;
+          transform: translateY(10px);
+          pointer-events: none;
+        }
+
+        &--dev {
+          background-color: rgba(15, 23, 42, 0.85);
+          color: white;
+        }
+
+        &--designer {
+          background-color: rgba(241, 245, 249, 0.9);
+          color: #111;
+        }
+      }
+    }
+
+    .avatar-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      transition:
+        transform 0.2s ease,
+        opacity 0.2s ease;
+      opacity: 1;
+
+      &.is-resetting {
+        transition: opacity 1s ease;
+      }
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+
+  
+    .side--designer {
+      display: none;
+    }
+  
+    .side--dev {
+      flex: 1;
+    }
+  
+    .avatar-wrapper {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  
+
+}
+@media (max-width: 768px) {
+  .hero-split {
+    display: none !important;
+  }
+}

@@ -1,0 +1,39 @@
+---
+import IconLink from "../components/ReactComponents/IconLink.tsx";
+import HeroSplitAvatar from "../components/ReactComponents/HeroSplitAvatar.tsx";
+import "../styles/components/_hero.scss";
+
+const cvUrl = "../assets/cv.pdf";
+---
+
+<HeroSplitAvatar client:load />
+
+<section class="hero">
+  <div class="container">
+    <img src="/assets/avatar.jpg" class="avatar" alt="Avatar de Mauro" />
+
+    <div class="labels">
+    <h1>Hi, I'm Mauro</h1>
+      <span class="label">Developer</span>
+      <span class="divider">|</span>
+      <span class="label">UI/UX Designer</span>
+      <div class="buttons">
+        <div class="social-icons">
+          <IconLink href={cvUrl} icon="Download" client:load />
+          <IconLink href="https://github.com/maw506" icon="github" client:load />
+          <IconLink
+            href="https://www.linkedin.com/in/gigenamauroexequiel/"
+            icon="linkedin"
+            client:load
+          />
+          <IconLink
+            href="https://instagram.com/maw.en.sistemas"
+            icon="instagram"
+            client:load
+          />
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
