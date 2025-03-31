@@ -4,6 +4,8 @@
   padding: variables.$spacing-lg variables.$spacing-xlg;
   background-color: var(--bg-color);
   color: var(--text-color);
+  position: relative; 
+  overflow: hidden;
 
   .about-content {
     margin-top: 55px;
@@ -19,7 +21,7 @@
     }
 
     .text {
-      flex: 3;
+      flex: 4;
       max-width: 1000px;
       text-align: left;
 
@@ -48,14 +50,14 @@
     }
 
     .image {
-      flex: 1;
+      flex: 2;
       display: flex;
       justify-content: center;
       align-items: center;
       position: relative;
 
       img {
-        width: 350px;
+        width: 450px;
         max-width: 100%;
         border-radius: 16px;
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);

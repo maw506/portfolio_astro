@@ -1,11 +1,14 @@
 ---
 import "../styles/components/_about.scss";
 import AosInit from "../components/ReactComponents/AosInit.tsx";
+import Particles from "../components/ReactComponents/Particles.tsx";
 ---
 
 <AosInit client:load />
 
 <section id="about" class="about-section">
+  <Particles client:load count={50} />
+
   <div class="container">
     <div class="about-content">
       <div class="text">
@@ -59,7 +62,11 @@ import AosInit from "../components/ReactComponents/AosInit.tsx";
       </div>
 
       <div class="image" data-aos="fade-left" data-aos-delay="100">
-        <img src="/assets/avatar_2.png" alt="Avatar de Mauro ilustrado" class="avatar-float" />
+        <img
+          src="/assets/avatar_2.png"
+          alt="Avatar de Mauro ilustrado"
+          class="avatar-float"
+        />
       </div>
     </div>
   </div>
