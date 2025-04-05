@@ -1,6 +1,6 @@
 import { useRef } from "react";
-import "../../styles/components/_heroSplitAvatar.scss";
-import IconLink from "./IconLink";
+import "../../../styles/components/_heroSplitAvatar.scss";
+import IconLink from "../ui/IconLink";
 const cvUrl = "../assets/cv.pdf";
 
 export default function HeroSplitAvatar() {

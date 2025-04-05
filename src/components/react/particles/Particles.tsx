@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import "../../styles/components/_particles.scss";
+import "../../../styles/components/_particles.scss";
 
 type Particle = {
   id: number;

@@ -1,7 +1,7 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
 import "swiper/css";
-import SkillIcon from "./SkillIcon";
+import SkillIcon from "../ui/SkillIcon";
 
 const skills = [
   { name: "HTML", icon: "html5" },
