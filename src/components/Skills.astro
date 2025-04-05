@@ -1,0 +1,93 @@
+---
+import "../styles/components/_skills.scss";
+import SkillsCarousel from "../components/ReactComponents/SkillsCarousel.tsx";
+import CodeParticles from "../components/ReactComponents/CodeParticles.tsx";
+---
+
+<section id="skills" class="skills-section">
+    <CodeParticles client:load count={20} />
+
+  <div class="container">
+    <h2 class="section-title" data-aos="fade-up">Skills</h2>
+
+    <div class="skills-lists" data-aos="fade-up" data-aos-delay="100">
+      <div class="skills-column">
+        <h3>🎨 Frontend</h3>
+        <ul class="skills-list">
+          <li>HTML</li>
+          <li>CSS / SCSS</li>
+          <li>JavaScript / TypeScript</li>
+          <li>React / Redux</li>
+          <li>Bootstrap / Ant Design</li>
+          <li>Webpack</li>
+        </ul>
+      </div>
+
+      <div class="skills-column">
+        <h3>💾 Backend</h3>
+        <ul class="skills-list">
+          <li>Node.js</li>
+          <li>API REST</li>
+          <li>Firebase</li>
+          <li>SQL Server</li>
+          <li>MySQL</li>
+        </ul>
+      </div>
+
+      <div class="skills-column">
+        <h3>📋 Metodologías</h3>
+        <ul class="skills-list">
+          <li>Git</li>
+          <li>Figma</li>
+          <li>Kanban</li>
+          <li>Trello</li>
+          <li>Jira</li>
+          <li>Agile</li>
+        </ul>
+      </div>
+
+      <div class="skills-column">
+        <h3>🧠 Soft Skills</h3>
+        <ul class="skills-list">
+          <li>Trabajo en equipo</li>
+          <li>Comunicación efectiva</li>
+          <li>Resolución de problemas</li>
+          <li>Gestión del tiempo</li>
+        </ul>
+      </div>
+
+      <div class="skills-column">
+        <h3>🧠 Herramientas</h3>
+        <ul class="skills-list">
+          <li>Trabajo en equipo</li>
+          <li>Comunicación efectiva</li>
+          <li>Resolución de problemas</li>
+          <li>Gestión del tiempo</li>
+        </ul>
+      </div>
+    </div>
+
+    <SkillsCarousel client:load />
+
+    <!-- Carrusel de íconos (próximamente integrable con swiper o react-slick) -->
+    <!-- <div class="skills-carousel" data-aos="fade-up" data-aos-delay="200">
+      <SkillIcon name="HTML" icon="html5" />
+      <SkillIcon name="CSS" icon="css3" />
+      <SkillIcon name="SCSS" icon="sass" />
+      <SkillIcon name="Bootstrap" icon="bootstrap" />
+      <SkillIcon name="JavaScript" icon="javascript" />
+      <SkillIcon name="TypeScript" icon="typescript" />
+      <SkillIcon name="React" icon="react" />
+      <SkillIcon name="Redux" icon="redux" />
+      <SkillIcon name="Webpack" icon="webpack" />
+      <SkillIcon name="Node.js" icon="nodejs" />
+      <SkillIcon name="Firebase" icon="firebase" />
+      <SkillIcon name="SQL Server" icon="microsoftsqlserver" />
+      <SkillIcon name="MySQL" icon="mysql" />
+      <SkillIcon name="Git" icon="git" />
+      <SkillIcon name="Figma" icon="figma" />
+      <SkillIcon name="Trello" icon="trello" />
+      <SkillIcon name="Jira" icon="jira" />
+    </div> -->
+  </div>
+</section>

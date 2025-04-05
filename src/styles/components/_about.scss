@@ -4,7 +4,7 @@
   padding: variables.$spacing-lg variables.$spacing-xlg;
   background-color: var(--bg-color);
   color: var(--text-color);
-  position: relative; 
+  position: relative;
   overflow: hidden;
 
   .about-content {
@@ -29,6 +29,8 @@
         font-size: 3rem;
         color: var(--primary-color);
         margin-bottom: variables.$spacing-md;
+        text-shadow: 0 0 3px rgba(100, 150, 255, 0.4);
+        animation: glowPulse 4s ease-in-out infinite;
       }
 
       .block {
@@ -41,6 +43,8 @@
           display: flex;
           align-items: center;
           gap: 0.5rem;
+          text-shadow: 0 0 4px rgba(100, 150, 255, 0.4);
+          animation: glowPulse 5s ease-in-out infinite;
         }
 
         p {
@@ -56,6 +60,10 @@
       align-items: center;
       position: relative;
 
+      &:hover {
+        transform: scale(1.2) rotate(-1.8deg);
+        transition: transform 0.5s ease;
+      }
       img {
         width: 450px;
         max-width: 100%;
@@ -63,7 +71,6 @@
         box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
         animation: floaty 4s ease-in-out infinite;
 
-        // Opcional: brillo animado detrás
         &::after {
           content: "";
           position: absolute;
@@ -110,5 +117,23 @@
   100% {
     opacity: 0.6;
     transform: scale(1);
+  }
+}
+
+@keyframes glowPulse {
+  0% {
+    text-shadow:
+      0 0 3px rgba(100, 150, 255, 0.1),
+      0 0 6px rgba(100, 150, 255, 0.05);
+  }
+  50% {
+    text-shadow:
+      0 0 8px rgba(100, 150, 255, 0.25),
+      0 0 12px rgba(100, 150, 255, 0.15);
+  }
+  100% {
+    text-shadow:
+      0 0 3px rgba(100, 150, 255, 0.1),
+      0 0 6px rgba(100, 150, 255, 0.05);
   }
 }

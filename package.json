@@ -19,6 +19,7 @@
     "aos": "^2.3.4",
     "astro": "^5.5.5",
     "lucide-react": "^0.485.0",
+    "swiper": "^11.2.6",
     "typescript": "^5.8.2"
   },
   "devDependencies": {
