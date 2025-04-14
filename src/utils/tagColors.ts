@@ -1,0 +1,16 @@
+export const tagColors: Record<string, string> = {
+  React: "geekblue",
+  "Node.js": "green",
+  Redux: "purple",
+  SCSS: "magenta",
+  "Ant Design": "cyan",
+  "API REST": "volcano",
+  TypeScript: "blue",
+  JavaScript: "gold",
+  WebSockets: "lime",
+  Axios: "orange",
+  Firebase: "red",
+  SQL: "gold",
+  "Clean Architecture": "purple",
+  "Framer Motion": "pink",
+};

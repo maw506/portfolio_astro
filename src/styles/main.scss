@@ -14,7 +14,13 @@
 }
 
 .full-screen {
-  min-height: 90vh;
+  min-height: 100vh;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  color: var(--primary-color);
 }
 
 .buttons {

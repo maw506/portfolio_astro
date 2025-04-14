@@ -1,0 +1,136 @@
+// styles/components/_projects.scss
+
+@use "../utils/variables" as *;
+@use "../utils/_projectModal.scss";
+
+.projects-section {
+  padding: $spacing-xlg $spacing-md;
+  background-color: var(--bg-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-title {
+  font-size: 2.5rem;
+  text-align: center;
+  color: var(--primary-color);
+  margin-bottom: $spacing-lg;
+  text-shadow: 0 0 4px rgba(100, 150, 255, 0.15);
+  animation: glowPulse 8s ease-in-out infinite;
+}
+
+.projects-category {
+  margin-bottom: $spacing-xlg;
+
+  .category-title {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: $spacing-md;
+    text-shadow: 0 0 2px rgba(255, 255, 255, 0.1);
+  }
+}
+
+.projects-grid {
+  display: grid;
+  gap: $spacing-md;
+  min-height: 300px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  animation: fadeGrid 0.3s ease;
+}
+
+.project-card {
+  background-color: var(--card-bg);
+  padding: $spacing-md;
+  border-radius: $radius-lg;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 0 10px rgba(0, 128, 255, 0.1);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+  position: relative;
+
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.4s ease forwards;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(0, 128, 255, 0.2);
+  }
+
+  h4 {
+    font-size: 1.4rem;
+    margin-bottom: $spacing-xs;
+    color: var(--primary-color);
+  }
+
+  p {
+    color: var(--text-color);
+    opacity: 0.9;
+    font-size: 1rem;
+  }
+
+  &.highlight {
+    border: 2px solid var(--primary-color);
+    background: linear-gradient(
+      145deg,
+      rgba(59, 130, 246, 0.08),
+      rgba(37, 99, 235, 0.05)
+    );
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.2);
+
+    h4::after {
+      content: " 🔥";
+    }
+  }
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+  margin-bottom: $spacing-lg;
+}
+
+.filterBtn {
+  padding: 0.5rem 1.25rem;
+  font-size: 1rem;
+  border-radius: $radius-lg;
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  backdrop-filter: blur(4px);
+
+  &:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+  }
+}
+
+.active {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 10px rgba(59, 130, 246, 0.4);
+}
+
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeGrid {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

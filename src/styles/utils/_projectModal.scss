@@ -1,0 +1,94 @@
+// styles/components/_projectModal.scss
+
+@use "../utils/variables" as *;
+
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.modal-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  padding: $spacing-lg;
+  border-radius: $radius-lg;
+  box-shadow: 0 0 25px rgba(0, 128, 255, 0.25);
+  max-width: 720px;
+  width: 90%;
+  color: var(--text-color);
+  position: relative;
+  animation: zoomIn 0.3s ease;
+
+  @keyframes zoomIn {
+    from {
+      transform: scale(0.95);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+
+  h3 {
+    font-size: 2rem;
+    margin-bottom: $spacing-xs;
+    color: var(--primary-color);
+  }
+
+  p {
+    line-height: 1.6;
+    margin-bottom: $spacing-sm;
+  }
+
+  .modal-section {
+    margin-bottom: $spacing-md;
+  }
+
+  .modal-flex {
+    display: flex;
+    justify-content: space-between;
+    gap: $spacing-md;
+    flex-wrap: wrap;
+
+    .modal-section {
+      flex: 1;
+      min-width: 45%;
+    }
+  }
+
+  .tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing-xs;
+  }
+
+  .modal-img {
+    width: 100%;
+    border-radius: $radius-md;
+    margin-top: $spacing-md;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 10px rgba(100, 150, 255, 0.15);
+  }
+}
+
+.modal-close {
+  position: absolute;
+  top: $spacing-sm;
+  right: $spacing-sm;
+  font-size: 1.2rem;
+  background: transparent;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--primary-color);
+  }
+}

@@ -1,0 +1,17 @@
+---
+import "../styles/components/_projects.scss";
+import CodeParticles from "../components/react/particles/CodeParticles.tsx";
+import Particles from "../components/react/particles/Particles.tsx";
+import AosInit from "../components/react/animations/AosInit";
+import ProjectsGalleryComp from "../components/react/sections/ProjectsGallery.tsx";
+---
+
+<AosInit client:load />
+
+<section id="projects" class="projects-section">
+  <CodeParticles client:load count={15} />
+  <Particles client:load count={20} />
+
+  <h2 class="section-title">Proyectos</h2>
+  <ProjectsGalleryComp client:load />
+</section>

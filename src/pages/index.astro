@@ -3,7 +3,7 @@ import Hero from "../components/Hero.astro";
 import About from "../components/About.astro";
 import Skills from "../components/Skills.astro";
 import Education from "../components/Education.astro";
-import ProjectsDev from "../components/ProjectsDev.astro";
+import ProjectsGallery from "../components/ProjectsGallery.astro";
 import ProjectsDesing from "../components/ProjectsDesing.astro";
 import Contact from "../components/Contact.astro";
 import MainLayout from "../layouts/MainLayout.astro";
@@ -11,15 +11,14 @@ import "../styles/main.scss";
 ---
 
 <MainLayout>
-  <section id="hero"></section>
-  <section class="full-screen">
+  <section id="hero" class="full-screen">
     <Hero />
   </section>
   <section id="about" class="full-screen"><About /></section>
   <section id="skills" class="full-screen"><Skills /></section>
   <section id="education" class="ful-screen"><Education /></section>
   <section id="projects" class="ful-screen">
-    <ProjectsDev /><ProjectsDesing />
+    <ProjectsGallery /><ProjectsDesing />
   </section>
   <section id="contact" class="ful-screen"><Contact /></section>
 </MainLayout>
