@@ -2,31 +2,46 @@
 import "../styles/components/_skills.scss";
 import SkillsCarousel from "./react/sections/SkillsCarousel.tsx";
 import CodeParticles from "./react/particles/CodeParticles.tsx";
+import AosInit from "./react/animations/AosInit";
 ---
 
+<AosInit client:load />
+
 <section id="skills" class="skills-section">
-    <CodeParticles client:load count={20} />
+  <CodeParticles client:load count={20} />
 
   <div class="container">
     <h2 class="section-title" data-aos="fade-up">Skills</h2>
 
-    <div class="skills-lists" data-aos="fade-up" data-aos-delay="100">
-      <div class="skills-column">
+    <div
+      class="skills-lists skills-grid"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      <div class="skills-column" data-aos="fade-up" data-aos-delay="100">
         <h3>🎨 Frontend</h3>
-        <ul class="skills-list">
+        <ul class="skills-list split-5">
           <li>HTML</li>
           <li>CSS / SCSS</li>
-          <li>JavaScript / TypeScript</li>
-          <li>React / Redux</li>
-          <li>Bootstrap / Ant Design</li>
-          <li>Webpack</li>
+          <li>JavaScript</li>
+          <li>TypeScript</li>
+          <li>React.js</li>
+          <li>Vue.js</li>
+          <li>Astro</li>
+          <li>Redux</li>
+          <li>Framer Motion</li>
+          <li>Responsive Design</li>
+          <li>Bootstrap</li>
+          <li>Ant Design</li>
+          <li>Webpack / Vite</li>
         </ul>
       </div>
 
-      <div class="skills-column">
+      <div class="skills-column" data-aos="fade-up" data-aos-delay="100">
         <h3>💾 Backend</h3>
-        <ul class="skills-list">
+        <ul class="skills-list split-5">
           <li>Node.js</li>
+          <li>Express</li>
           <li>API REST</li>
           <li>Firebase</li>
           <li>SQL Server</li>
@@ -34,60 +49,49 @@ import CodeParticles from "./react/particles/CodeParticles.tsx";
         </ul>
       </div>
 
-      <div class="skills-column">
-        <h3>📋 Metodologías</h3>
-        <ul class="skills-list">
+      <div class="skills-column" data-aos="fade-up" data-aos-delay="100">
+        <h3>🏗️ Arquitecturas</h3>
+        <ul class="skills-list split-5">
+          <li>Clean Architecture</li>
+          <li>Hexagonal (básico)</li>
+          <li>Microservicios</li>
+          <li>Microfrontends</li>
+          <li>SPA</li>
+        </ul>
+      </div>
+
+      <div class="skills-column" data-aos="fade-up" data-aos-delay="100">
+        <h3>🛠️ Herramientas</h3>
+        <ul class="skills-list split-5">
           <li>Git</li>
           <li>Figma</li>
+          <li>Prettier / ESLint</li>
+          <li>Jest / Postman</li>
+          <li>Consuman</li>
+        </ul>
+      </div>
+
+      <div class="skills-column" data-aos="fade-up" data-aos-delay="100">
+        <h3>🧰 Metodologías de Trabajo</h3>
+        <ul class="skills-list">
+          <li>Agile</li>
           <li>Kanban</li>
           <li>Trello</li>
           <li>Jira</li>
-          <li>Agile</li>
         </ul>
       </div>
 
-      <div class="skills-column">
+      <div class="skills-column" data-aos="fade-up" data-aos-delay="100">
         <h3>🧠 Soft Skills</h3>
-        <ul class="skills-list">
+        <ul class="skills-list split-5">
           <li>Trabajo en equipo</li>
           <li>Comunicación efectiva</li>
           <li>Resolución de problemas</li>
           <li>Gestión del tiempo</li>
-        </ul>
-      </div>
-
-      <div class="skills-column">
-        <h3>🧠 Herramientas</h3>
-        <ul class="skills-list">
-          <li>Trabajo en equipo</li>
-          <li>Comunicación efectiva</li>
-          <li>Resolución de problemas</li>
-          <li>Gestión del tiempo</li>
+          <li>Adaptabilidad</li>
+          <li>Autonomía para aprender</li>
         </ul>
       </div>
     </div>
-
     <SkillsCarousel client:load />
-
-    <!-- Carrusel de íconos (próximamente integrable con swiper o react-slick) -->
-    <!-- <div class="skills-carousel" data-aos="fade-up" data-aos-delay="200">
-      <SkillIcon name="HTML" icon="html5" />
-      <SkillIcon name="CSS" icon="css3" />
-      <SkillIcon name="SCSS" icon="sass" />
-      <SkillIcon name="Bootstrap" icon="bootstrap" />
-      <SkillIcon name="JavaScript" icon="javascript" />
-      <SkillIcon name="TypeScript" icon="typescript" />
-      <SkillIcon name="React" icon="react" />
-      <SkillIcon name="Redux" icon="redux" />
-      <SkillIcon name="Webpack" icon="webpack" />
-      <SkillIcon name="Node.js" icon="nodejs" />
-      <SkillIcon name="Firebase" icon="firebase" />
-      <SkillIcon name="SQL Server" icon="microsoftsqlserver" />
-      <SkillIcon name="MySQL" icon="mysql" />
-      <SkillIcon name="Git" icon="git" />
-      <SkillIcon name="Figma" icon="figma" />
-      <SkillIcon name="Trello" icon="trello" />
-      <SkillIcon name="Jira" icon="jira" />
-    </div> -->
-  </div>
 </section>

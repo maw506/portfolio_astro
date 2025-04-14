@@ -1,10 +1,12 @@
 ---
 import IconLink from "./react/ui/IconLink.tsx";
 import HeroSplitAvatar from "./react/sections/HeroSplitAvatar.tsx";
+import AosInit from "./react/animations/AosInit";
 import "../styles/components/_hero.scss";
 
 const cvUrl = "../assets/cv.pdf";
 ---
+<AosInit client:load />
 
 <HeroSplitAvatar client:load />
 
