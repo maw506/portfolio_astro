@@ -1,0 +1,139 @@
+.galaxy-wrapper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+  
+  .galaxy-particle {
+    position: absolute;
+    opacity: 0.15;
+    border-radius: 50%;
+    animation: float ease-in-out infinite;
+    transform-origin: center;
+    transition: transform 0.3s ease;
+
+  }
+  
+  // 🌍 PLANETA
+  .galaxy-particle.planet {
+    background: radial-gradient(circle at 30% 30%, #64b5f6, #1e3c72);
+    box-shadow: 0 0 10px rgba(100, 150, 255, 0.2);
+    &::before {
+      content: "";
+      position: absolute;
+      width: 140%;
+      height: 30%;
+      top: 50%;
+      left: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      transform: translate(-50%, -50%) rotate(25deg);
+    }
+  }
+  
+  // 🌟 ESTRELLA
+  .galaxy-particle.star {
+    background: white;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.6);
+    opacity: 0.05;
+    animation-name: twinkle;
+  }
+  
+  @keyframes float {
+    0% {
+      transform: translateY(0px) scale(1) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) scale(1.1) rotate(10deg);
+    }
+    100% {
+      transform: translateY(0px) scale(1) rotate(0deg);
+    }
+  }
+  
+  @keyframes twinkle {
+    0%, 100% {
+      opacity: 0.05;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: scale(1.3);
+    }
+  }
+  
+  .galaxy-planet {
+    position: absolute;
+    top: 40%;
+    left: 60%;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4dabf7, #5f27cd, #7c4dff);
+    background-size: 200% 200%;
+    animation:
+      floatPlanet 20s ease-in-out infinite alternate,
+      colorShift 30s ease-in-out infinite;
+    box-shadow:
+      0 0 20px rgba(100, 150, 255, 0.2),
+      0 0 40px rgba(150, 100, 255, 0.1),
+      inset -6px -12px 25px rgba(255, 255, 255, 0.05);
+    z-index: 0;
+    opacity: 0.1;
+    filter: blur(0.3px);
+    pointer-events: none;
+  }
+  
+  @keyframes floatPlanet {
+    0% {
+      transform: translateY(0) scale(1);
+    }
+    50% {
+      transform: translateY(-10px) scale(1.03);
+    }
+    100% {
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  @keyframes colorShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .galaxy-planet::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 160%;
+    height: 35%;
+    border: 1px solid rgba(255, 255, 255, 0.61);
+    border-radius: 50%;
+    transform: translate(-50%, -50%) rotate(25deg);
+    animation: orbitPulse 10s ease-in-out infinite;
+  }
+  
+  @keyframes orbitPulse {
+    0%,
+    100% {
+      opacity: 0.1;
+      transform: translate(-50%, -50%) rotate(25deg) scale(1);
+    }
+    50% {
+      opacity: 0.3;
+      transform: translate(-50%, -50%) rotate(25deg) scale(1.05);
+    }
+  }
+  

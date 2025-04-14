@@ -1,0 +1,100 @@
+---
+import "../styles/components/_education.scss";
+import Particles from "./react/particles/Particles";
+import ParticlesGalaxy from "./react/particles/ParticlesGalaxy.tsx";
+---
+
+<section id="education" class="education-horizontal">
+  <ParticlesGalaxy
+    client:load
+    count={12}
+    planetPosition={{
+      top: "-40%",
+      left: "75%",
+      size: "800px",
+      display: true,
+    }}
+  />
+  <Particles client:load count={30} />
+
+  <div class="container">
+    <h2 class="section-title">Formacion academica</h2>
+
+    <!-- Versión horizontal para desktop -->
+    <div class="timeline-horizontal desktop-only">
+      <div class="timeline-item up">
+        <div class="connector"></div>
+        <div class="content">
+          <h3>Ingeniería en Sistemas de Información</h3>
+          <p>Universidad Tecnológica Nacional</p>
+          <p>2019 - Actualidad</p>
+        </div>
+      </div>
+
+      <div class="timeline-item down">
+        <div class="connector"></div>
+        <div class="content">
+          <h3>Ingeniería en Software</h3>
+          <p>Universidad Siglo 21</p>
+          <p>2025 - Actualidad</p>
+        </div>
+      </div>
+
+      <div class="timeline-item up">
+        <div class="connector"></div>
+        <div class="content">
+          <h3>Desarrollo Frontend</h3>
+          <p>CoderHouse</p>
+          <p>2023 - 2024</p>
+        </div>
+      </div>
+
+      <div class="timeline-item down">
+        <div class="connector"></div>
+        <div class="content">
+          <h3>Bootcamp Diseño UX/UI</h3>
+          <p>Udemy</p>
+          <p>2024</p>
+        </div>
+      </div>
+
+      <div class="timeline-item up">
+        <div class="connector"></div>
+        <div class="content">
+          <h3>Técnico en Programación</h3>
+          <p>Instituto Manuel de Falla</p>
+          <p>2018</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Versión simplificada para mobile -->
+    <div class="timeline-vertical mobile-only">
+      <div class="card">
+        <h3>Ingeniería en Sistemas de Información</h3>
+        <p>Universidad Tecnológica Nacional</p>
+        <p>2019 - Actualidad</p>
+      </div>
+      <div class="card">
+        <h3>Ingeniería en Software</h3>
+        <p>Universidad Siglo 21</p>
+        <p>2025 - Actualidad</p>
+      </div>
+      <div class="card">
+        <h3>Desarrollo Frontend</h3>
+        <p>CoderHouse</p>
+        <p>2023 - 2024</p>
+      </div>
+      <div class="card">
+        <h3>Bootcamp Diseño UX/UI</h3>
+        <p>Udemy</p>
+        <p>2024</p>
+      </div>
+      <div class="card">
+        <h3>Técnico en Programación</h3>
+        <p>Instituto Manuel de Falla</p>
+        <p>2018</p>
+      </div>
+    </div>
+  </div>
+</section>

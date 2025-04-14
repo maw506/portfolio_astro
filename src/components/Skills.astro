@@ -3,12 +3,14 @@ import "../styles/components/_skills.scss";
 import SkillsCarousel from "./react/sections/SkillsCarousel.tsx";
 import CodeParticles from "./react/particles/CodeParticles.tsx";
 import AosInit from "./react/animations/AosInit";
+import Particles from "./react/particles/Particles";
 ---
 
 <AosInit client:load />
 
 <section id="skills" class="skills-section">
   <CodeParticles client:load count={20} />
+  <Particles client:load count={20} />
 
   <div class="container">
     <h2 class="section-title" data-aos="fade-up">Skills</h2>

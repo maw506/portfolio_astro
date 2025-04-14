@@ -2,11 +2,22 @@
 import "../styles/components/_about.scss";
 import AosInit from "./react/animations/AosInit.tsx";
 import Particles from "./react/particles/Particles.tsx";
+import ParticlesGalaxy from "./react/particles/ParticlesGalaxy";
 ---
 
 <AosInit client:load />
 
 <section id="about" class="about-section">
+  <ParticlesGalaxy
+    client:load
+    count={12}
+    planetPosition={{
+      top: "-10%",
+      left: "60%",
+      size: "800px",
+      display: true,
+    }}
+  />
   <Particles client:load count={50} />
 
   <div class="container">
