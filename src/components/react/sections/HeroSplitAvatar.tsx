@@ -1,7 +1,120 @@
-import { useEffect, useRef } from "react";
+import { memo, useEffect, useRef } from "react";
 import "../../../styles/components/_heroSplitAvatar.scss";
 import IconLink from "../ui/IconLink";
 const cvUrl = "../assets/cv.pdf";
+
+type DevParticlesProps = {
+  parentRef: React.RefObject<HTMLDivElement>;
+};
+
+const DevParticles = memo(function DevParticles({ parentRef }: DevParticlesProps) {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    const parent = parentRef.current;
+    if (!canvas || !parent) return;
+
+    const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (prefersReduced || isMobile) return;
+
+    const context = canvas.getContext("2d");
+    if (!context) return;
+
+    const characters = ["0", "1", "<", ">", "{", "}", "//", ";", "$", "_", "&", "|"];
+    const particleCount = 36;
+
+    const particles = Array.from({ length: particleCount }, () => ({
+      x: Math.random(),
+      y: Math.random(),
+      speed: 0.2 + Math.random() * 0.4,
+      drift: -0.05 + Math.random() * 0.1,
+      char: characters[Math.floor(Math.random() * characters.length)],
+      size: 14 + Math.random() * 8,
+      alpha: 0.2 + Math.random() * 0.4,
+    }));
+
+    const pointer = { x: 0, y: 0, targetX: 0, targetY: 0 };
+    let animationFrame: number | null = null;
+
+    const resize = () => {
+      const rect = parent.getBoundingClientRect();
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+    };
+
+    const handlePointer = (event: PointerEvent) => {
+      const rect = parent.getBoundingClientRect();
+      pointer.targetX = (event.clientX - rect.left) / rect.width - 0.5;
+      pointer.targetY = (event.clientY - rect.top) / rect.height - 0.5;
+    };
+
+    const draw = () => {
+      pointer.x += (pointer.targetX - pointer.x) * 0.08;
+      pointer.y += (pointer.targetY - pointer.y) * 0.08;
+
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.textBaseline = "middle";
+      context.textAlign = "center";
+
+      particles.forEach((particle) => {
+        particle.y += particle.speed;
+        particle.x += particle.drift * 0.002;
+
+        if (particle.y > 1) particle.y = 0;
+        if (particle.x > 1) particle.x = 0;
+        if (particle.x < 0) particle.x = 1;
+
+        const parallaxX = pointer.x * 18;
+        const parallaxY = pointer.y * 10;
+
+        const drawX = particle.x * canvas.width + parallaxX;
+        const drawY = particle.y * canvas.height + parallaxY;
+
+        context.globalAlpha = particle.alpha;
+        context.font = `${particle.size}px 'Fira Code', 'SF Mono', monospace`;
+        context.fillStyle = "#7dd3fc";
+        context.fillText(particle.char, drawX, drawY);
+      });
+
+      animationFrame = window.requestAnimationFrame(draw);
+    };
+
+    resize();
+    draw();
+    parent.addEventListener("pointermove", handlePointer, { passive: true });
+    window.addEventListener("resize", resize, { passive: true });
+
+    return () => {
+      parent.removeEventListener("pointermove", handlePointer);
+      window.removeEventListener("resize", resize);
+      if (animationFrame !== null) window.cancelAnimationFrame(animationFrame);
+    };
+  }, [parentRef]);
+
+  return <canvas ref={canvasRef} className="dev-particles" aria-hidden="true" />;
+});
+
+const DesignerDecorations = memo(function DesignerDecorations() {
+  const elements = [
+    { className: "paint paint--one" },
+    { className: "paint paint--two" },
+    { className: "paint paint--three" },
+    { className: "shape shape--rect" },
+    { className: "shape shape--circle" },
+    { className: "shape shape--cursor" },
+    { className: "shape shape--dropper" },
+  ];
+
+  return (
+    <div className="designer-decor" aria-hidden="true">
+      {elements.map((item, index) => (
+        <span key={index} className={item.className} />
+      ))}
+    </div>
+  );
+});
 
 export default function HeroSplitAvatar() {
   const devRef = useRef<HTMLDivElement>(null);
@@ -49,6 +162,8 @@ export default function HeroSplitAvatar() {
 
       devEl.setAttribute("data-hidden", "false");
       designerEl.setAttribute("data-hidden", "false");
+      devEl.setAttribute("data-expanded", "false");
+      designerEl.setAttribute("data-expanded", "false");
 
       resetTimer.current = window.setTimeout(() => {
         sidesEl.classList.remove("is-resetting");
@@ -81,11 +196,17 @@ export default function HeroSplitAvatar() {
       avatarEl.style.transform = `translate(-50%, -50%) translate3d(${movement}px, 0, 0)`;
 
       const hideThreshold = 0.25;
-      devEl.setAttribute("data-hidden", devFlex < hideThreshold ? "true" : "false");
-      designerEl.setAttribute(
-        "data-hidden",
-        designerFlex < hideThreshold ? "true" : "false"
-      );
+      const devHidden = devFlex < hideThreshold;
+      const designerHidden = designerFlex < hideThreshold;
+      devEl.setAttribute("data-hidden", devHidden ? "true" : "false");
+      designerEl.setAttribute("data-hidden", designerHidden ? "true" : "false");
+
+      const expansionThreshold = 0.55;
+      const devExpansionThreshold = 0.45;
+      const devExpanded = percent < devExpansionThreshold && !devHidden;
+      const designerExpanded = percent > expansionThreshold && !designerHidden;
+      devEl.setAttribute("data-expanded", devExpanded ? "true" : "false");
+      designerEl.setAttribute("data-expanded", designerExpanded ? "true" : "false");
     };
 
     const queueMovement = (event: PointerEvent) => {
@@ -129,8 +250,10 @@ export default function HeroSplitAvatar() {
             className="side side--dev"
             ref={devRef}
             data-hidden="false"
+            data-expanded="false"
             style={{ flexGrow: 1 }}
           >
+            <DevParticles parentRef={devRef} />
             <div className="overlay">
               <h2>Fullstack Web Developer</h2>
               <p>
@@ -143,8 +266,10 @@ export default function HeroSplitAvatar() {
             className="side side--designer"
             ref={designerRef}
             data-hidden="false"
+            data-expanded="false"
             style={{ flexGrow: 1 }}
           >
+            <DesignerDecorations />
             <div className="overlay">
               <h2>UI/UX Designer</h2>
               <p>
