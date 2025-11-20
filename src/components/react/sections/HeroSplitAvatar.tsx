@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "../../../styles/components/_heroSplitAvatar.scss";
 import IconLink from "../ui/IconLink";
 const cvUrl = "../assets/cv.pdf";
@@ -9,68 +9,114 @@ export default function HeroSplitAvatar() {
   const avatarRef = useRef<HTMLDivElement>(null);
   const sidesRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const container = e.currentTarget;
-    const rect = container.getBoundingClientRect();
-    const x = e.clientX - rect.left;
+  useEffect(() => {
+    const devEl = devRef.current;
+    const designerEl = designerRef.current;
+    const avatarEl = avatarRef.current;
+    const sidesEl = sidesRef.current;
 
-    let percent = x / rect.width;
-    percent = Math.min(1, Math.max(0, percent)); // clamp entre 0 y 1
+    if (!devEl || !designerEl || !avatarEl || !sidesEl) return;
 
-    const devFlex = percent;
-    const designerFlex = 1 - percent;
+    const bounds = { left: 0, width: 1 };
+    const pointerX = { current: null as number | null };
+    const frameRef = { current: null as number | null };
+    const resetTimer = { current: null as number | null };
+    const resetDuration = 400;
 
-    if (devRef.current && designerRef.current && avatarRef.current) {
-      devRef.current.style.flexGrow = devFlex.toString();
-      designerRef.current.style.flexGrow = designerFlex.toString();
+    const updateBounds = () => {
+      const rect = sidesEl.getBoundingClientRect();
+      bounds.left = rect.left;
+      bounds.width = rect.width || 1;
+    };
+
+    const clearResetTimer = () => {
+      if (resetTimer.current !== null) {
+        window.clearTimeout(resetTimer.current);
+        resetTimer.current = null;
+      }
+    };
+
+    const resetSides = () => {
+      pointerX.current = null;
+      clearResetTimer();
+      sidesEl.classList.add("is-resetting");
+      avatarEl.classList.add("is-resetting");
+
+      devEl.style.flexGrow = "1";
+      designerEl.style.flexGrow = "1";
+      avatarEl.style.opacity = "1";
+      avatarEl.style.transform = "translate(-50%, -50%)";
+
+      devEl.setAttribute("data-hidden", "false");
+      designerEl.setAttribute("data-hidden", "false");
+
+      resetTimer.current = window.setTimeout(() => {
+        sidesEl.classList.remove("is-resetting");
+        avatarEl.classList.remove("is-resetting");
+      }, resetDuration);
+    };
+
+    const applyMovement = () => {
+      frameRef.current = null;
+
+      if (pointerX.current === null) return;
+
+      const percent = Math.min(
+        1,
+        Math.max(0, (pointerX.current - bounds.left) / bounds.width)
+      );
+
+      const devFlex = percent;
+      const designerFlex = 1 - percent;
+
+      devEl.style.flexGrow = devFlex.toString();
+      designerEl.style.flexGrow = designerFlex.toString();
 
       const distanceFromCenter = Math.abs(0.5 - percent);
-
       const opacityMultiplier = 4;
       const opacity = 1 - distanceFromCenter * opacityMultiplier;
-      avatarRef.current.style.opacity = String(
-        Math.max(0, Math.min(1, opacity))
-      );
+      avatarEl.style.opacity = String(Math.max(0, Math.min(1, opacity)));
 
       const movement = (percent - 0.5) * 50;
-      avatarRef.current.style.transform = `translate(-50%, -50%) translateX(${movement}px)`;
+      avatarEl.style.transform = `translate(-50%, -50%) translate3d(${movement}px, 0, 0)`;
 
       const hideThreshold = 0.25;
-      devRef.current.setAttribute(
-        "data-hidden",
-        devFlex < hideThreshold ? "true" : "false"
-      );
-      designerRef.current.setAttribute(
+      devEl.setAttribute("data-hidden", devFlex < hideThreshold ? "true" : "false");
+      designerEl.setAttribute(
         "data-hidden",
         designerFlex < hideThreshold ? "true" : "false"
       );
-    }
-  };
+    };
 
-  const resetSides = () => {
-    if (
-      devRef.current &&
-      designerRef.current &&
-      avatarRef.current &&
-      sidesRef.current
-    ) {
-      sidesRef.current.classList.add("is-resetting");
-      avatarRef.current.classList.add("is-resetting");
+    const queueMovement = (event: PointerEvent) => {
+      pointerX.current = event.clientX;
+      if (frameRef.current === null) {
+        frameRef.current = window.requestAnimationFrame(applyMovement);
+      }
+    };
 
-      devRef.current.style.flexGrow = "1";
-      designerRef.current.style.flexGrow = "1";
-      avatarRef.current.style.opacity = "1";
-      avatarRef.current.style.transform = "translate(-50%, -50%)";
+    updateBounds();
 
-      devRef.current.setAttribute("data-hidden", "false");
-      designerRef.current.setAttribute("data-hidden", "false");
+    devEl.style.willChange = "flex-grow";
+    designerEl.style.willChange = "flex-grow";
+    avatarEl.style.willChange = "transform, opacity";
 
-      setTimeout(() => {
-        sidesRef.current?.classList.remove("is-resetting");
-        avatarRef.current?.classList.remove("is-resetting");
-      }, 400);
-    }
-  };
+    sidesEl.addEventListener("pointermove", queueMovement, { passive: true });
+    sidesEl.addEventListener("pointerleave", resetSides, { passive: true });
+    window.addEventListener("resize", updateBounds, { passive: true });
+    window.addEventListener("scroll", updateBounds, { passive: true });
+
+    return () => {
+      sidesEl.removeEventListener("pointermove", queueMovement);
+      sidesEl.removeEventListener("pointerleave", resetSides);
+      window.removeEventListener("resize", updateBounds);
+      window.removeEventListener("scroll", updateBounds);
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
+      clearResetTimer();
+    };
+  }, []);
 
   return (
     <section className="hero-split">
@@ -78,8 +124,6 @@ export default function HeroSplitAvatar() {
         <div
           className="sides"
           ref={sidesRef}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={resetSides}
         >
           <div
             className="side side--dev"
