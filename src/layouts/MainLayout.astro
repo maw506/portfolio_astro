@@ -1,6 +1,7 @@
 ---
 import "../styles/main.scss";
 import Header from "./Header.astro";
+import DevelopmentNotice from "../components/react/ui/DevelopmentNotice.tsx";
 ---
 
 <!doctype html>
@@ -26,6 +27,7 @@ import Header from "./Header.astro";
   <body>
     <main class="site-wrapper">
       <Header />
+      <DevelopmentNotice client:load />
       <slot />
     </main>
   </body>
