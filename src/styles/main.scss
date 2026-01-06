@@ -1,6 +1,7 @@
 @use "utils/variables";
 @use "base/reset";
 @use "base/typography";
+@use "utils/_projectModal.scss";
 
 .site-wrapper {
   font-family: "Inter", sans-serif;
