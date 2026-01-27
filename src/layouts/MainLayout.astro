@@ -13,6 +13,16 @@ import DevelopmentNotice from "../components/react/ui/DevelopmentNotice.tsx";
       name="description"
       content="Portfolio de Mauro - UI/UX Designer & Developer"
     />
+    <script>
+      (() => {
+        const storedTheme = localStorage.getItem("theme");
+        const theme =
+          storedTheme === "light" || storedTheme === "dark"
+            ? storedTheme
+            : "dark";
+        document.documentElement.setAttribute("data-theme", theme);
+      })();
+    </script>
     <title>Mauro | Portfolio</title>
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link
